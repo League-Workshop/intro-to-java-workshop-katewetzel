@@ -1,0 +1,12 @@
+size(1000,1000);
+fill(#FFFFFF);
+ellipse(100,100,100,100);
+fill(#050504);
+ellipse(85,90,10,10);
+fill(#050504);
+ellipse(115,90,10,10);
+fill(#E38717);
+triangle(100,100,95,110,105,110);
+fill(#FFFFFF);
+ellipse(100,225,150,150);
+fill(#FFFFFF);
