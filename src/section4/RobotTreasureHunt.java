@@ -13,59 +13,78 @@ import javax.swing.JOptionPane;
 //import org.teachingextensions.logo.robot;
 import org.jointheleague.graphical.robot.Robot;
 
-public class RobotTreasureHunt implements KeyEventDispatcher{
+public class RobotTreasureHunt implements KeyEventDispatcher {
 
 	// 1. Create a new mini robot (type "mini" inside the parentheses)
-Robot mini = new Robot();	
+	Robot mini = new Robot();
+
 	private void goUp() throws InterruptedException {
-		// 2. Make the robot move up the screen (use setAngle(angle) and microMove(distance))
-mini.setAngle(0);
-mini.microMove(10);
+		// 2. Make the robot move up the screen (use setAngle(angle) and
+		// microMove(distance))
+		mini.setAngle(0);
+		mini.microMove(10);
 
 	}
 
-	private void goDown() throws InterruptedException{
-		// 3. make the robot move down the screen (use setAngle(angle) and microMove(distance))
-mini.setAngle(180);
-mini.microMove(10);
+	private void goDown() throws InterruptedException {
+		// 3. make the robot move down the screen (use setAngle(angle) and
+		// microMove(distance))
+		mini.setAngle(180);
+		mini.microMove(10);
 	}
 
-	private void turnLeft() throws InterruptedException{
-		// 4. Make the robot turn to the left (use setAngle(angle) and microMove(distance))
-mini.setAngle(-90);
-mini.microMove(10);
+	private void turnLeft() throws InterruptedException {
+		// 4. Make the robot turn to the left (use setAngle(angle) and
+		// microMove(distance))
+		mini.setAngle(-90);
+		mini.microMove(10);
 	}
 
-	private void turnRight() throws InterruptedException{
-		// 5. make the robot turn to the right (use setAngle(angle) and microMove(distance))
-mini.setAngle(90);
-mini.microMove(10);
+	private void turnRight() throws InterruptedException {
+		// 5. make the robot turn to the right (use setAngle(angle) and
+		// microMove(distance))
+		mini.setAngle(90);
+		mini.microMove(10);
 	}
 
 	private void spaceBarWasPressed() {
 
-		// 5. Change ROBOTNAME below to match the name of the robot you created in step 1.  THEN, remove the slashes at the beginning of the next two lines
+		// 5. Change ROBOTNAME below to match the name of the robot you created in step
+		// 1. THEN, remove the slashes at the beginning of the next two lines
 		int robotXLocation = mini.getX();
 		int robotYLocation = mini.getY();
-		
-		// 6. Print the robotXLocation and robotYLocation variables to the console 
+
+		// 6. Print the robotXLocation and robotYLocation variables to the console
 		System.out.println(robotXLocation);
 		System.out.println(robotYLocation);
 		// 7. If robot is at same location as the little girl
-		//      --make a pop-up tell the robot where to go next
-		
+		// --make a pop-up tell the robot where to go next
+		if (robotXLocation == 720 && robotYLocation == 410) {
+			JOptionPane.showMessageDialog(null, "Find the boy");
+		}
 		// 8. Give the user subsequent clues at different locations on the image
 		// (pirate robot, swamp, parrots, etc.)
-		
-		// 9.  If the robot is in the final location
-		//     --call the treasureFound() method
-		
+		if (robotXLocation == 200 && robotYLocation == 410) {
+			JOptionPane.showMessageDialog(null, "Good Job!");
+			JOptionPane.showMessageDialog(null, "Now find the pirate hat");
+		}
+		if (robotXLocation == 580 && robotYLocation == 320) {
+			JOptionPane.showMessageDialog(null, "Good Job!");
+			JOptionPane.showMessageDialog(null, "Now find the cannon");
+		}
+		if (robotXLocation == 700 && robotYLocation == 250) {
+			JOptionPane.showMessageDialog(null, "Good Job!");
+			treasureFound();
+		}
+		// 9. If the robot is in the final location
+		// --call the treasureFound() method
+
 	}
 
 	private void go() {
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
 		Robot.setWindowImage("section4/treasure_hunt.jpg");
-	
+mini.miniaturize();
 		JOptionPane.showMessageDialog(null, "Ask the girl for help with your quest. Press the space bar to ask.");
 
 	}
@@ -78,8 +97,7 @@ mini.microMove(10);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+			} else if (e.getKeyCode() == KeyEvent.VK_LEFT)
 				try {
 					turnLeft();
 				} catch (InterruptedException e2) {
@@ -102,7 +120,7 @@ mini.microMove(10);
 		}
 		return false;
 	}
-	
+
 	static void treasureFound() {
 		try {
 			URI uri = new URI("https://www.youtube.com/watch?v=G0aIg4N6aro");
@@ -112,8 +130,7 @@ mini.microMove(10);
 		}
 	}
 
-
-	public static void main (String[] args) throws MalformedURLException {
+	public static void main(String[] args) throws MalformedURLException {
 		new RobotTreasureHunt().go();
 	}
 }
